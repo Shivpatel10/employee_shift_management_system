@@ -15,3 +15,35 @@ function displayEmployeeShifts(employeeInfo) { //creating a displayEmployeeShift
     });
 };
 displayEmployeeShifts(employees[1]); // This will output the employee shift schedule for Sam
+
+// Task 3: Create a Function to Assign a New Shift
+function assignShift(employeeName, day, hours) {
+    let employee = employees.find(Employee => Employee.name === employeeName) // this find() finds the employee name
+        if (employee) {
+            let assignedShift = employee.shifts.find(shift => shift.day === day); // looks for employee and checks to see if they are assigned a shift that day already
+            if (assignedShift) {
+                console.log( `ERROR: shift is already assigned to ${employeeName} on ${employee.shift.day}`);
+            } else {
+                employee.shifts.push({day}); // will push the new day into the employees array  and give it to the specified employee
+                employee.shifts.push({hours}); // will push the new hour into employees array and give it to the specified employee
+            console.log(`Update: ${employeeName} has now been assigned ${hours} hours on ${day}.`); 
+            };
+        };
+};
+
+assignShift('Zach', 'Tuesday', 7); // Will assign Zach 7 hours on tuesday
+
+
+// Task 4: Create a Function to Calculate Total Hours Worked
+function calculateTotalHours(employeeName, shifts) {
+    let employee = employees.find(Employee => Employee.name === employeeName) // reusing this find() finds the employee name
+        if (employee) {
+            let totalHoursWorked = employee.shifts.reduce((totalHours, shift) => totalHours + shift.hours, 0); // used reduce to sum the hours up for all shifts.
+        console.log(`${employeeName}'s total hours work this week are ${totalHoursWorked} hours.`) // logging total hours worked
+        } else 
+            console.log('ERROR please recheck!'); // if the employee name isnt found.
+};
+calculateTotalHours(`Dave`); // used to test if the code works should say dave has 8 hours this week
+
+
+// Task 5: Create a Function to List Employees with Free Days

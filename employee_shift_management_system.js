@@ -47,3 +47,12 @@ calculateTotalHours(`Dave`); // used to test if the code works should say dave h
 
 
 // Task 5: Create a Function to List Employees with Free Days
+ function listAvailableEmployees(day) {
+    employees.forEach(employee => { // loops through each employee in the array
+        let employeeWithShift = employee.shifts.some(shift => shift.day === day); // checks if the employee does NOT have a shift on specific day
+            if (!employeeWithShift) { // if the employee doesn't have a shift on that day it logs their name
+        console.log(`${employee.name} is available on ${day}.`);
+        }
+    });
+ };
+ listAvailableEmployees("Tuesday"); // test will output who doesnt have shifts on tuesday
